@@ -1,0 +1,62 @@
+<template>
+  <div>
+      <!-- 使用 mintui 的header组件 -->
+      <mt-header fixed title="Vue项目">
+          <a href="#/" slot="left">
+              <mt-button icon="back">返回</mt-button>
+          </a>
+      </mt-header>
+      <!--内容区域-->
+      <!--设置一个类名,通过此类名设置内容区域的共同样式,此类名会被展示的元素标签继承-->
+      <router-view class="content"></router-view>
+
+      <!--使用MUI库footer功能-->
+      <nav class="mui-bar mui-bar-tab">
+          <router-link class="mui-tab-item " to="/home">
+              <span class="mui-icon mui-icon-home"></span>
+              <span class="mui-tab-label">首页</span>
+          </router-link>
+          <router-link class="mui-tab-item" to="/vip">
+              <span class="mui-icon mui-icon-contact"></span>
+              <span class="mui-tab-label">会员</span>
+          </router-link>
+          <router-link class="mui-tab-item" to="/cart">
+              <!-- 注意：mui-icon 必须要有，否则，样式错乱 -->
+              <span class="mui-icon mui-icon-extra mui-icon-extra-cart">
+                  <span class="mui-badge">9</span>
+              </span>
+              <span class="mui-tab-label">购物车</span>
+          </router-link>
+          <router-link class="mui-tab-item" to="/search">
+              <span class="mui-icon mui-icon-search"></span>
+              <span class="mui-tab-label">搜索</span>
+          </router-link>
+      </nav>
+  </div>
+</template>
+
+<script>
+  // 因为只有在 App.vue 组件中使用了 icon-extra 样式，所以，只需要在
+  // 这个组件中导入样式即可！
+  import './lib/mui/css/icons-extra.css'
+  // 注意导出的这个对象就是：当前组件的配置对象
+</script>
+
+<style lang="scss" scoped>
+/* 在style标签上加上lang="scss" 可以在里面写scss语法*/
+
+    .content
+    {
+    margin:40px 0 50px 0;
+    }
+    .mui-bar .mui-bar-tab {
+        .mui-active
+        {
+            color:#007aff;
+        }
+    }
+
+
+
+</style>
+
