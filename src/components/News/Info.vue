@@ -13,14 +13,22 @@
         <!-- 注意：通过 v-html 指令动态生成的内容，不管页面中的内容，scope对其无效 -->
         <!--因为返回的内容里带有html标签,所以需要使用v-html来解析标签,直接使用{{list.content}}标签会不解析-->
         <div class="content" v-html="list.content"></div>
+
         <!--评论区域-->
+        <!--因为需要获取当前组件里本条新闻的id值,再获取本条新闻的评论内容-->
+        <!--所以此处涉及到父子间数据通讯问题(父传子)-->
+        <Comment :commentId="list.id"></Comment>
 
     </div>
 </template>
 
 <script>
     //使用axios从接口获取数据
+    //导入comment.vue组件
+    import Comment from '../Comment/Comment.vue'
+    //注册Comment组件
     export default{
+
         data(){
             return {
                 //接收新闻内容数据
@@ -48,6 +56,10 @@
         },
         created(){
             this.getNewsInfo();
+        },
+        //将Comment组件,注册为当前组件的子组件,以便可以在此组件中使用
+        components:{
+            Comment
         }
 
     }

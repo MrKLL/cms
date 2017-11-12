@@ -2,7 +2,7 @@
   <div>
       <!-- 使用 mintui 的header组件 -->
       <mt-header fixed title="Vue项目">
-          <a href="#/" slot="left">
+          <a href="#/" slot="left" @click.prevent="goBack" v-if="isShow">
               <mt-button icon="back">返回</mt-button>
           </a>
       </mt-header>
@@ -38,8 +38,40 @@
 <script>
   // 因为只有在 App.vue 组件中使用了 icon-extra 样式，所以，只需要在
   // 这个组件中导入样式即可！
-  import './lib/mui/css/icons-extra.css'
+  import './lib/mui/css/icons-extra.css';
   // 注意导出的这个对象就是：当前组件的配置对象
+    export default{
+        data(){
+            return {
+                //默认不展示返回键
+                isShow:false
+            }
+        },
+        watch:{
+            //监视路由的变化
+            '$route'(to,from){
+                if(to.path !== '/home'){
+                    //不是首页,就显示返回键
+                    this.isShow=true;
+                }else{
+                    this.isShow=false;
+                }
+            }
+        },
+        created(){
+          //每次刷新页面都检查,是不是首页
+            if(this.$route.path !== '/home') {
+                this.isShow = true
+            }
+        },
+        methods:
+            {
+                //实现返回上一层功能
+                goBack(){
+                    this.$router.go(-1);
+                }
+            }
+    }
 </script>
 
 <style lang="scss" scoped>
