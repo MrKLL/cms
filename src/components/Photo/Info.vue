@@ -65,7 +65,6 @@
                                 arr.w=600;
                                 arr.h=400
                             });
-                            console.log(this.images);
                         }
                     })
             }
