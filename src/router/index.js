@@ -18,8 +18,10 @@ import NewsInfo from '../components/News/Info.vue'
 import PhotoList from '../components/Photo/List.vue'
 //导入展示图片的列表模块
 import PhotoInfo from '../components/Photo/Info.vue'
-//导入商品购买模块
-import Goods from '../components/Goods/List.vue'
+//导入商品购买列表模块
+import GoodsList from '../components/Goods/List.vue'
+//导入商品购买详情模块
+import GoodsInfo from '../components/Goods/Info.vue'
 //4.实例化路由组件
 var router=new VueRouter
 (
@@ -39,7 +41,9 @@ var router=new VueRouter
                 //设置展示图片的内容详情模块的路由
                 {path:'/home/photo/:id',component:PhotoInfo},
                 //设置展示商品列表模块的路由
-                {path:'/home/goods',component:Goods},
+                {path:'/home/goods',component:GoodsList},
+                //设置展示商品详情模块的路由
+                {path:'/home/goods/:id',component:GoodsInfo},
                 {path:'/vip',component:Vip},
                 {path:'/cart',component:Cart},
                 {path:'/search',component:Search},

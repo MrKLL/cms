@@ -1,16 +1,16 @@
 <template>
     <div class="goods-list">
         <ul>
-            <li class="goods-item">
-                <img alt="">
-                <h2>标题</h2>
+            <li class="goods-item" v-for="item in list" :key="item.id" @click="goInfo(item.id)">
+                <img  v-lazy="item.img_url">
+                <h2>{{ item.title }}</h2>
                 <div>
-                    <span class="price-cur">￥折后价</span>
-                    <span class="price-prev">￥原价</span>
+                    <span class="price-cur">￥{{ item.sell_price }}</span>
+                    <span class="price-prev">￥{{ item.market_price }}</span>
                 </div>
                 <p>
                     <span>热卖中</span>
-                    <span>剩余1件</span>
+                    <span>剩余{{ item.stock_quantity }}件</span>
                 </p>
             </li>
         </ul>
@@ -24,11 +24,50 @@
     export default{
         data(){
             return {
-
+                //存储图片列表数据信息
+                list:[],
+                //存储页码
+                page:1,
+                //控制加载更多按钮显示还是隐藏,默认显示
+                isShow:true
             }
         },
-        methods:{},
-        created(){}
+        methods:{
+           //获取指定页码的商品数据
+            getGoodsList(){
+                //设置请求数据的接口地址
+                var url=`/api/getgoods?pageindex=${this.page}`;
+                //通过axios发送get请求,并接收返回数据
+                this.$http.get(url)
+                    .then(res=>{
+                        //默认一次获取的数据为10条,一次获取的数据小于10说明没有数据了,隐藏加载更多按钮
+                        if(res.data.message.length<10){
+                            this.isShow=false
+                        }
+                        console.log(res);
+                        if(res.data.status===0){
+                            //获取数据成功,将数据保存,以便在模板中展示数据
+                            //将后面获取的数据与之前的数据进行合并,不会出现覆盖之前的数据的情况
+                            this.list=this.list.concat(res.data.message);
+                        }
+                    })
+
+            },
+            //实现加载更多功能
+            getMore(){
+                //页码加1,获取下一页内容
+                this.page+=1;
+                this.getGoodsList();
+            },
+            //使用编程式导航的方式跳转到详情页面
+            goInfo(id){
+                this.$router.push(`/home/goods/${id}`);
+            }
+        },
+        created(){
+            //页面打开的时候,直接获取全部数据
+            this.getGoodsList();
+        }
     }
 </script>
 
