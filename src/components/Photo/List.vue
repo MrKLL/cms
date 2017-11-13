@@ -21,7 +21,8 @@
         <!-- 图片列表 -->
         <ul>
             <li class="img-item" v-for="data in list" :key="data.id" @click="getInfo(data.id)" >
-                <img  :src="data.img_url">
+                <!--v-lazy  结合mint UI实现图片懒加载-->
+                <img  v-lazy="data.img_url">
                 <div class="item-desc">
                     <h2>{{ data.title }}</h2>
                     <p>{{ data.zhaiyao }}</p>
