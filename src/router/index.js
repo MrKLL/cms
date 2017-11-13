@@ -15,8 +15,9 @@ import NewsList from '../components/News/List.vue'
 //导入新闻详情模板
 import NewsInfo from '../components/News/Info.vue'
 //导入图片分享模块
-import Photo from '../components/Photo/Photo.vue'
-
+import PhotoList from '../components/Photo/List.vue'
+//导入展示图片的列表模块
+import PhotoInfo from '../components/Photo/Info.vue'
 //4.实例化路由组件
 var router=new VueRouter
 (
@@ -31,7 +32,10 @@ var router=new VueRouter
                 {path:'/home/newslist',component:NewsList},
                 //设置新闻模块中的详情页面模块的路由
                 {path:'/home/newsinfo/:id',component:NewsInfo},
-                {path:'/home/photo',component:Photo},
+                //设置图片分享模块的路由
+                {path:'/home/photo',component:PhotoList},
+                //设置展示图片的内容详情模块
+                {path:'/home/photo/:id',component:PhotoInfo},
                 {path:'/vip',component:Vip},
                 {path:'/cart',component:Cart},
                 {path:'/search',component:Search},

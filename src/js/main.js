@@ -2,11 +2,13 @@
 // 导入 vue
 import Vue from 'vue'
 //导入mintUI中要用到的组件(按需导入)
-import {Header, Button, Swipe, SwipeItem} from 'mint-ui'
+import {Header, Button, Swipe, SwipeItem,Lazyload} from 'mint-ui'
 //导入MUI样式文件
 import '../lib/mui/css/mui.min.css'
 //导入MUI字体文件
 import '../lib/mui/fonts/mui-icons-extra.ttf'
+//导入MUIjs文件
+import mui from '../lib/mui/js/mui.min'
 // 导入 app 组件
 import App from '../App.vue'
 //导入自定义样式文件
@@ -15,6 +17,8 @@ import '../css/index.css'
 import router from '../router'
 //导入过滤器
 import '../filters/date'
+//导入vue插件vue-preview
+import VuePreview from 'vue-preview'
 //导入axios组件
 import axios from 'axios'
 //设置axios请求接口的公共部分
@@ -25,7 +29,14 @@ axios.defaults.baseURL='http://vue.studyit.io';
 // 为了在其他的组件或库中能够使用该axios，我们要将axios对象添加为vue原型的属性中
 // 注意：对于非Vue插件，都采用给原型对象添加属性的方式来使用，在组件中使用的时候，直接通过 this就可以访问了
 //对于vue插件在导入之后,可以采取Vue.use()来注册组件,例如router
+//注册vue插件vue-preview(放大图功能)
+Vue.use(VuePreview);
+//注册vue插件vue-preview(图片懒加载功能)
+Vue.use(Lazyload);
+//挂载axios
 Vue.prototype.$http=axios;
+//挂载mui
+Vue.prototype.$mui=mui;
 //注册MintUI中导入的组件(查看官网使用文档)
 Vue.component(Header.name, Header);
 Vue.component(Button.name, Button);

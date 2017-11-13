@@ -49,7 +49,7 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .news
     {
         /*新闻列表标题,多余标题显示...*/

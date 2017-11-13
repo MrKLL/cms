@@ -17,7 +17,7 @@
         <!--评论区域-->
         <!--因为需要获取当前组件里本条新闻的id值,再获取本条新闻的评论内容-->
         <!--所以此处涉及到父子间数据通讯问题(父传子)-->
-        <Comment :commentId="list.id"></Comment>
+        <Comment :commentId="$route.params.id"></Comment>
 
     </div>
 </template>
@@ -65,7 +65,7 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .newsInfo
     {
         .newsInfo-header{

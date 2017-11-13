@@ -62,7 +62,9 @@ module.exports = {
       {
         test: /\.js$/,
         use: 'babel-loader',
-        exclude: /node_modules/
+          // 告诉 babel, 不用解析处理 node_modules 或 lib 目录中的js文件
+          // 作用: 只要js路径中包含 lib 那么, 这些文件就不会再被babel处理了
+        exclude: /node_modules|lib/
       },
 
       // 处理单文件组件
