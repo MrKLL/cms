@@ -52,7 +52,6 @@
                 //设置请求数据的接口地址
                 var url=`/api/getthumimages/${id}`;
                 //通过axios发送get请求,并接收返回数据
-                console.log(url);
                 this.$http.get(url)
                     .then(res=>{
                         if(res.data.status===0){
