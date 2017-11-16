@@ -139,14 +139,14 @@
                 //  子组件通过父组件注册的方法给父组件传递参数
                 //为了提高用户的体验度,这里延时0.6秒再将数据传给父组件,达到小球飞进购物车,数值再变化的效果
                 setTimeout(()=>{
-                    this.$emit('getCart',this.$refs.num.value);
+                    this.$emit('getCart',[this.$route.params.id,this.$refs.num.value]);
                 },500);
             },
 
             // JS动画钩子函数
             beforeEnter: function (el) {
                 // 设置小球的初始位置
-                el.style.transform = 'translate(0, 0)'
+                el.style.transform = 'translate(0, 0)';
 
                 /*
                  如果我们写了以下代码，那么浏览器为了提高渲染DOM的性能，只会渲染一次

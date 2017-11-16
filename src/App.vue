@@ -46,7 +46,9 @@
                 //默认不展示返回键
                 isShow:false,
                 //接收子组件传递过来的存储购物中商品的数量
-                count:0
+                count:0,
+                //保存商品id和商品数量的对应关系
+                id2num:[]
             }
         },
         watch:{
@@ -73,8 +75,16 @@
                     this.$router.go(-1);
                 },
                 //注册方法供子组件传输数据过来
-                getCart(count){
-                        this.count+=count-0
+                getCart(data){
+                    //用list变量对传递过来的数据进行格式化处理
+                    var list={};
+                    list.id=data[0];
+                    list.count=data[1];
+                    //存储所有商品的总数量
+                    this.count+=data[1]-0
+                    //将处理好的数据储存到data中的id2num中
+                    this.id2num.push(list);
+//                    console.log(this.id2num);
                 }
             }
     }
