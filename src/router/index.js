@@ -24,6 +24,8 @@ import GoodsList from '../components/Goods/List.vue'
 import GoodsInfo from '../components/Goods/Info.vue'
 //导入商品购买详情介绍信息展示模块
 import GoodsDesc from '../components/Goods/Desc.vue'
+//导入商品购买详情评论信息展示模块
+import GoodsComment from '../components/Goods/Comment.vue'
 //4.实例化路由组件
 var router=new VueRouter
 (
@@ -48,6 +50,8 @@ var router=new VueRouter
                 {path:'/home/goods/:id',component:GoodsInfo},
                 //设置展示商品详情页面的路由
                 {path:'/home/goodsdesc/:id',component:GoodsDesc},
+                //设置展示商品详情评论页面的路由
+                {path:'/home/goodscomment/:id',component:GoodsComment},
                 {path:'/vip',component:Vip},
                 {path:'/cart',component:Cart},
                 {path:'/search',component:Search},

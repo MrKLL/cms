@@ -44,7 +44,7 @@
                         if(res.data.message.length<10){
                             this.isShow=false
                         }
-                        console.log(res);
+
                         if(res.data.status===0){
                             //获取数据成功,将数据保存,以便在模板中展示数据
                             //将后面获取的数据与之前的数据进行合并,不会出现覆盖之前的数据的情况

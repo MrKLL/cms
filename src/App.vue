@@ -8,7 +8,7 @@
       </mt-header>
       <!--内容区域-->
       <!--设置一个类名,通过此类名设置内容区域的共同样式,此类名会被展示的元素标签继承-->
-      <router-view class="content"></router-view>
+      <router-view class="content" @getCart="getCart"></router-view>
 
       <!--使用MUI库footer功能-->
       <nav class="mui-bar mui-bar-tab">
@@ -23,7 +23,7 @@
           <router-link class="mui-tab-item" to="/cart">
               <!-- 注意：mui-icon 必须要有，否则，样式错乱 -->
               <span class="mui-icon mui-icon-extra mui-icon-extra-cart">
-                  <span class="mui-badge">9</span>
+                  <span class="mui-badge">{{count}}</span>
               </span>
               <span class="mui-tab-label">购物车</span>
           </router-link>
@@ -44,7 +44,9 @@
         data(){
             return {
                 //默认不展示返回键
-                isShow:false
+                isShow:false,
+                //接收子组件传递过来的存储购物中商品的数量
+                count:0
             }
         },
         watch:{
@@ -69,6 +71,10 @@
                 //实现返回上一层功能
                 goBack(){
                     this.$router.go(-1);
+                },
+                //注册方法供子组件传输数据过来
+                getCart(count){
+                        this.count+=count-0
                 }
             }
     }

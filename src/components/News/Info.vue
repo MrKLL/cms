@@ -25,7 +25,7 @@
 <script>
     //使用axios从接口获取数据
     //导入comment.vue组件
-    import Comment from '../Comment/Comment.vue'
+    import Comment from '../Common/Comment.vue'
     //注册Comment组件
     export default{
 
